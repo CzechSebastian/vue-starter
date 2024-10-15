@@ -42,7 +42,7 @@ const filteredSandwiches = computed(() => {
       </div>
       <div class="saved-list">
         <div class="subtitle">Liste des Sandwichs Sauvegardés</div>
-        <input v-model="ingredientFilter" placeholder="Filtrer par ingrédient" />
+        <input v-if="store.sandwiches.length > 1" v-model="ingredientFilter" placeholder="Filtrer par ingrédient" />
         <ul>
           <li class="sandwich-list" v-for="sandwich in filteredSandwiches" :key="sandwich.id">
             {{ sandwich.bread }}, {{ sandwich.sauce }}, {{ sandwich.cheese }}, {{ sandwich.filling }}
@@ -65,9 +65,15 @@ const filteredSandwiches = computed(() => {
   margin-bottom: 32px;
   min-width: 300px;
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .saved-list {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .title {
   text-align: center;
@@ -104,6 +110,7 @@ input:focus {
 
 .sandwich-list {
   font-family: "Helvetica Neue";
+  text-align: center;
 }
 .subtitle {
   font-family: "Helvetica Neue";
