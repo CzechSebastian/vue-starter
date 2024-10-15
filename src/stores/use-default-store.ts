@@ -76,6 +76,19 @@ export const useDefaultStore = defineStore('default', () => {
         state.sandwiches.push(sandwich);
     };
 
+    const addBread = (bread: Ingredients.bread) => {
+        state.sandwiches.bread.push(bread);
+    };
+    const addSauce = (sauce: Ingredients.sauce) => {
+        state.sandwiches.sauce.push(sauce);
+    };
+    const addCheese = (cheese: Ingredients.cheese) => {
+        state.sandwiches.cheese.push(cheese);
+    };
+    const addFilling= (filling: Ingredients.fillings) => {
+        state.sandwiches.fillings.push(filling);
+    };
+
     const filterSandwiches = (ingredient: string): Sandwich[] => {
         return state.sandwiches.filter(sandwich =>
             Object.values(sandwich)
@@ -89,5 +102,9 @@ export const useDefaultStore = defineStore('default', () => {
         generateSandwich,
         saveSandwich,
         filterSandwiches,
+        addBread,
+        addCheese,
+        addFilling,
+        addSauce
     };
 });

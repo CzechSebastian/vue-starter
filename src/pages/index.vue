@@ -5,6 +5,10 @@ import { useDefaultStore } from '@/stores/use-default-store';
 const store = useDefaultStore();
 const generatedSandwich = ref<{ bread: string, sauce: string, cheese: string, filling: string } | null>(null);
 const ingredientFilter = ref<string>('');
+const bread = ref<string>('');
+const cheese = ref<string>('');
+const sauce = ref<string>('');
+const filling = ref<string>('');
 
 const generateAndSaveSandwich = () => {
   generatedSandwich.value = store.generateSandwich();
@@ -16,6 +20,18 @@ const saveGeneratedSandwich = () => {
     generatedSandwich.value = null;  // Reset after saving
   }
 };
+const addBread = () => {
+  store.addBread(bread.value);
+}
+const addSauce = () => {
+  store.addSauce(sauce.value);
+}
+const addCheese = () => {
+  store.addBread(cheese.value);
+}
+const addFilling = () => {
+  store.addFilling(filling.value);
+}
 
 const filteredSandwiches = computed(() => {
   if (ingredientFilter.value.trim() !== '') {
@@ -49,6 +65,17 @@ const filteredSandwiches = computed(() => {
           </li>
         </ul>
       </div>
+    </div>
+    <div class="admin">
+      <div class="subtitle">Administration des ingredients</div>
+      <input  v-model="bread" placeholder="Ajouter un pain" />
+      <button @click="addBread">ajouter un pain</button>
+      <input  v-model="sauce" placeholder="Ajouter une sauce" />
+      <button @click="addSauce">ajouter une sauce</button>
+      <input  v-model="cheese" placeholder="Ajouter un fromage" />
+      <button @click="addCheese">ajouter un fromage</button>
+      <input  v-model="filling" placeholder="Ajouter une garniture" />
+      <button @click="addFilling">ajouter une garniture</button>
     </div>
   </div>
 </template>
@@ -139,5 +166,10 @@ button:hover {
   color: #fff;
   background-color: #0b5ed7;
   border-color: #0a58ca;
+}
+.admin {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
 }
 </style>
